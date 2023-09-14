@@ -19,6 +19,7 @@ def mypropagation(rv0,dt,mu,t_step):
     new_dynamics=lambda rv,t:dynamics(rv,t,mu)
     rv=odeint(new_dynamics,rv0,t)
     return rv
+
 # test：right rv:[ 0.86960342 -0.16077931 -0.05226604 -0.26656077 -0.69818329  0.70599091]
 # rv0=np.array([0.6, 0.5, -0.6, 0.7, -0.5, 0.3])
 # rv=mypropagation(rv0,1,1,1)

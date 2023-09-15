@@ -24,3 +24,5 @@ def mypropagation(rv0,dt,mu,t_step):
 # rv0=np.array([0.6, 0.5, -0.6, 0.7, -0.5, 0.3])
 # rv=mypropagation(rv0,1,1,1)
 # print(rv)
+
+def xRotation

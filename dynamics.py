@@ -1,6 +1,8 @@
 import numpy as np
+import math
 from scipy.integrate import odeint
 
+# 动力学方程
 def dynamics(rv,t,mu):
     drdv=np.zeros(6)
     r_norm=np.linalg.norm(rv[:3])
@@ -13,8 +15,12 @@ def dynamics(rv,t,mu):
     return drdv
 
 
+# 积分求解
 def mypropagation(rv0,dt,mu,t_step):
-    num=int(dt/t_step+1)
+    if t_step==-1:
+        num=2
+    else:
+        num=int(dt/t_step+1)    
     t=np.linspace(0,dt,num)
     new_dynamics=lambda rv,t:dynamics(rv,t,mu)
     rv=odeint(new_dynamics,rv0,t)
@@ -24,3 +30,19 @@ def mypropagation(rv0,dt,mu,t_step):
 # rv0=np.array([0.6, 0.5, -0.6, 0.7, -0.5, 0.3])
 # rv=mypropagation(rv0,1,1,1)
 # print(rv)
+
+# 旋转矩阵
+def xRotationMatrix(angle):
+    return np.array([ [1, 0, 0],
+                      [0, math.cos(angle), -math.sin(angle)],
+                      [0, math.sin(angle), math.cos(angle)]], dtype='float')
+
+def yRotationMatrix(angle):
+    return np.array([ [math.cos(angle), 0, math.sin(angle)],
+                      [0, 1, 0],
+                      [-math.sin(angle), 0, math.cos(angle)]], dtype='float')
+
+def zRotationMatrix(angle):
+    return np.array([ [math.cos(angle), -math.sin(angle), 0],
+                      [math.sin(angle), math.cos(angle), 0],
+                      [0, 0, 1]], dtype='float')

@@ -15,5 +15,7 @@ def err_OC(x_observed,rv,t,index):
 # 最小二乘法求解
 def optimize_orb(x_observed,rv0,t,index):
     new_err_OC=lambda rv:err_OC(x_observed,rv,t,index)
-    result = least_squares(new_err_OC, rv0)
+    result = least_squares(
+        new_err_OC, rv0, method='dogbox', xtol=1e-9)
+    # return rv0
     return result.x

@@ -34,7 +34,7 @@ rv0=np.array([r0.value[0],r0.value[1],r0.value[2],v0.value[0],v0.value[1],v0.val
 print('Orbit Period:',orb.period.to(u.hour))
 
 t_max=3600
-t_num=10
+t_num=3
 rv=dynamics.mypropagation(rv0,t_max,mu.value,t_max/(t_num-1))
 # print(rv)
 
@@ -80,7 +80,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot(x, y, z)
 for i in range(t_num):
-    ax.scatter(rv[i,0], rv[i,1], rv[i,2], c='red', s=3, label='Highlighted Point')
+    ax.scatter(rv[i,0], rv[i,1], rv[i,2], c='red', s=1, label='Highlighted Point')
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
@@ -110,7 +110,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot(x, y, z)
 for i in range(t_num):
-    ax.scatter(rv[i,0], rv[i,1], rv[i,2], c='red', s=3, label='Highlighted Point')
+    ax.scatter(rv[i,0], rv[i,1], rv[i,2], c='red', s=1, label='Highlighted Point')
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
